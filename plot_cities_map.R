@@ -16,7 +16,7 @@ citiestbl <- read.csv("~/Documents/Travels/data/cities15000_cleaned.csv",strings
 #pull out the data for the cities I've traveled to
 mycities <- c("Cairo","Aswan","Luxor","Nevşehir","Istanbul","Selçuk","Karachi",
               "Islamabad","Lahore","Dubai","Kyiv","Lviv","Atlanta","Paramus",
-              "Bangkok","Chiang Mai","Chiang Rai","Krabi")
+              "Bangkok","Chiang Mai","Chiang Rai","Krabi","Phnom Penh")
 citiesplotdata <- subset(citiestbl,select = c(name,latitude,longitude,countrycode),name %in% mycities)
 
 #manually add in the smaller cities that weren't in the database
@@ -44,25 +44,15 @@ mym <- leaflet(citiesplotdata) %>% addProviderTiles(providers$Esri) %>%
   addEasyButton(easyButton(
     icon="fa-globe", title="Zoom to Level 1",
     onClick=JS("function(btn, map){ map.setZoom(1); }")))
-mym
-
-# #send plot to my chart-studio account
-# Sys.setenv("plotly_username"="maheen")
-# Sys.setenv("plotly_api_key"="y0LlpanfLixDkhp7GNWW")
-# library(plotly)
-# options(browser = 'false')
-# api_create(mym, filename = "my-travels-map")
+# mym
 
 #save the map in .html format
 library(htmlwidgets)
-saveWidget(mym, file="~/Documents/Travels/data/mymap.html")
+saveWidget(mym, file="~/Documents/Travels/data/travelblog/mymap.html")
 
 #I used this tutorial to help me upload my plot to github pages
 #and create an iframe command: 
 #https://towardsdatascience.com/how-to-create-a-plotly-visualization-and-embed-it-on-websites-517c1a78568b
-
-#I uploaded the file to my github site in the master branch 
-#of my travelblog repo
 
 #This to use iframe to embed on Wordpress site: 
 #https://www.wpbeginner.com/wp-tutorials/how-to-easily-embed-iframe-code-in-wordpress/
