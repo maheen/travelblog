@@ -14,14 +14,18 @@
 citiestbl <- read.csv("~/Documents/Travels/data/cities15000_cleaned.csv",stringsAsFactors = F)
 
 #Manually change the city I'm in now
-curcity <- "Cancún"
+curcity <- "Valladolid"
 
 #pull out the data for the cities I've traveled to
 mycities <- c("Cairo","Aswan","Luxor","Nevşehir","Istanbul","Selçuk","Karachi",
               "Islamabad","Lahore","Dubai","Kyiv","Lviv","Atlanta","Paramus",
               "Bangkok","Chiang Mai","Chiang Rai","Krabi","Phnom Penh",
-              "Siem Reap","Kampot","Mexico City","Oaxaca","Cancún")
+              "Siem Reap","Kampot","Mexico City","Oaxaca","Cancún",
+              "Playa del Carmen","Valladolid")
 citiesplotdata <- subset(citiestbl,select = c(name,latitude,longitude,countrycode),name %in% mycities)
+
+#remove Valladolid, Spain
+citiesplotdata <- subset(citiesplotdata,countrycode != "ES")
 
 #manually add in the smaller cities that weren't in the database
 smallcities = data.frame(name = c("Skardu","Hunza","Koh Phi Phi","Koh Pha Ngan","Koh Tao","Kep"),
