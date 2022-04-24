@@ -32,10 +32,10 @@ mulcities <- subset(citiestbl,select = c(name,latitude,longitude,countrycode),
 citiesplotdata <- rbind(citiesplotdata,mulcities)
 
 #manually add in the smaller cities that weren't in the database
-smallcities <- data.frame(name = c("Skardu","Hunza","Koh Phi Phi","Koh Pha Ngan","Koh Tao","Kep"),
-                         latitude = c(35.267388,36.31114437534064,7.740659015920495,9.677933020649514,10.084587412818292,10.486575137817916),
-                         longitude = c(75.637957, 74.61577544868913, 98.77359019690073, 100.06743762574513, 99.82670648156872, 104.32097072574972),
-                         countrycode = c("PK","PK","TH","TH","TH","KH"))
+smallcities <- data.frame(name = c("Skardu","Hunza","Koh Phi Phi","Koh Pha Ngan","Koh Tao","Kep","Machu Picchu Town","Ollantaytambo"),
+                         latitude = c(35.267388,36.31114437534064,7.740659015920495,9.677933020649514,10.084587412818292,10.486575137817916,-13.154961066230339,-13.25914487103009),
+                         longitude = c(75.637957, 74.61577544868913, 98.77359019690073, 100.06743762574513, 99.82670648156872, 104.32097072574972, -72.52350926457737, -72.26242642601422),
+                         countrycode = c("PK","PK","TH","TH","TH","KH","PE","PE"))
 citiesplotdata <- rbind(citiesplotdata,smallcities)
 
 #clean up some of the names
