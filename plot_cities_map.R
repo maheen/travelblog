@@ -14,28 +14,29 @@
 citiestbl <- read.csv("~/Documents/Travels/data/cities15000_cleaned.csv",stringsAsFactors = F)
 
 #Manually change the city I'm in now
-curcity <- "Cusco"
+curcity <- "Cuenca"
 
 #pull out the data for the cities I've traveled to
 mycities <- c("Cairo","Aswan","Luxor","Nevşehir","Istanbul","Selçuk","Karachi",
               "Islamabad","Lahore","Dubai","Kyiv","Lviv","Atlanta","Paramus",
               "Bangkok","Chiang Mai","Chiang Rai","Krabi","Phnom Penh",
               "Siem Reap","Kampot","Mexico City","Oaxaca","Cancún",
-              "Playa del Carmen","Cusco")
+              "Playa del Carmen","Cusco", "Guayaquil","Quito","Latacunga")
 citiesplotdata <- subset(citiestbl,select = c(name,latitude,longitude,countrycode),name %in% mycities)
 
 #add in the cities that exist in multiple countries
 mulcities <- subset(citiestbl,select = c(name,latitude,longitude,countrycode),
        (name == "Valladolid" & countrycode == "MX") | 
          (name == "Mérida" & countrycode == "MX") | 
-         (name == "Lima" & countrycode == "PE"))
+         (name == "Lima" & countrycode == "PE") | 
+         (name == "Cuenca" & countrycode == "EC"))
 citiesplotdata <- rbind(citiesplotdata,mulcities)
 
 #manually add in the smaller cities that weren't in the database
-smallcities <- data.frame(name = c("Skardu","Hunza","Koh Phi Phi","Koh Pha Ngan","Koh Tao","Kep","Machu Picchu Town","Ollantaytambo"),
-                         latitude = c(35.267388,36.31114437534064,7.740659015920495,9.677933020649514,10.084587412818292,10.486575137817916,-13.154961066230339,-13.25914487103009),
-                         longitude = c(75.637957, 74.61577544868913, 98.77359019690073, 100.06743762574513, 99.82670648156872, 104.32097072574972, -72.52350926457737, -72.26242642601422),
-                         countrycode = c("PK","PK","TH","TH","TH","KH","PE","PE"))
+smallcities <- data.frame(name = c("Skardu","Hunza","Koh Phi Phi","Koh Pha Ngan","Koh Tao","Kep","Machu Picchu Town","Ollantaytambo","Puerto Ayora, Galápagos","Puerto Villamil, Galápagos","San Cristóbal, Galápagos"),
+                         latitude = c(35.267388,36.31114437534064,7.740659015920495,9.677933020649514,10.084587412818292,10.486575137817916,-13.154961066230339,-13.25914487103009,-0.7338008188062649,-0.954484,-0.901867),
+                         longitude = c(75.637957, 74.61577544868913, 98.77359019690073, 100.06743762574513, 99.82670648156872, 104.32097072574972, -72.52350926457737, -72.26242642601422, -90.31602307326939, -90.965717, -89.608983),
+                         countrycode = c("PK","PK","TH","TH","TH","KH","PE","PE","EC","EC","EC"))
 citiesplotdata <- rbind(citiesplotdata,smallcities)
 
 #clean up some of the names
